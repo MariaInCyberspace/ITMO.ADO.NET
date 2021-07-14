@@ -25,6 +25,13 @@ namespace DBConnection
         public Form1()
         {
             InitializeComponent();
+            this.connection.StateChange += Connection_StateChange;
+        }
+
+        private void Connection_StateChange(object sender, StateChangeEventArgs e)
+        {
+            connectToDatabaseToolStripMenuItem.Enabled = (e.CurrentState == ConnectionState.Closed);
+            disconnectToolStripMenuItem.Enabled = (e.CurrentState == ConnectionState.Open);
         }
 
         private void connectToDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
