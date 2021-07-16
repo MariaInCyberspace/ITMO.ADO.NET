@@ -132,5 +132,40 @@ namespace DBConnection
                 listView1.Items.Add(reader["ProductName"].ToString());
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            using (OleDbConnection connection_trans = new OleDbConnection(testConnect))
+            {
+                connection_trans.Open(); 
+                OleDbTransaction OleTran = connection_trans.BeginTransaction();
+
+                OleDbCommand command = connection_trans.CreateCommand();
+                command.Transaction = OleTran;
+
+                try
+                {
+                    command.CommandText = "INSERT INTO Products (ProductName) VALUES('Wrong size')";
+                    command.ExecuteNonQuery();
+                    command.CommandText = "INSERT INTO Products (ProductName) VALUES('Wrong color')";
+                    command.ExecuteNonQuery();
+                    OleTran.Commit();
+                    MessageBox.Show("Both records were inserted into the database");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    try
+                    {
+                        OleTran.Rollback();
+                    }
+                    catch (Exception exRollback)
+                    {
+                        MessageBox.Show(exRollback.Message);
+                    }
+
+                }
+            } 
+        }
     }
 }
