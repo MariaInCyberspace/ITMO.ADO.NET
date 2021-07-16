@@ -114,5 +114,23 @@ namespace DBConnection
             int number = (int)command.ExecuteScalar();
             label1.Text = number.ToString();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (connection.State != ConnectionState.Open)
+            {
+                MessageBox.Show("Сначала подключитесь к базе");
+                return;
+            }
+
+            OleDbCommand command = connection.CreateCommand();
+            command.CommandText = "SELECT ProductName FROM Products";
+            OleDbDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                listView1.Items.Add(reader["ProductName"].ToString());
+            }
+        }
     }
 }
