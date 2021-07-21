@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,35 @@ namespace DBCommand
         public Form1()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            StringBuilder sb = new StringBuilder();
+            sqlCommand1.CommandType = CommandType.Text;
+            using (sqlConnection1)
+            {
+                sqlConnection1.Open();
+
+                using (SqlDataReader reader = sqlCommand1.ExecuteReader())
+                {
+                    bool MoreResults = false;
+                    do
+                    {
+                        while (reader.Read())
+                        {
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                sb.Append(reader[i].ToString() + "\t");
+                            }
+                            sb.Append(Environment.NewLine);
+                        }
+                        MoreResults = reader.NextResult();
+                    }
+                    while (MoreResults);
+                }
+            }
+            richTextBox1.Text = sb.ToString();
         }
     }
 }
