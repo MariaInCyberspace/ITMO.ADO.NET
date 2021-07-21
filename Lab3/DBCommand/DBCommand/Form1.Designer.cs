@@ -35,6 +35,8 @@ namespace DBCommand
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.sqlCommand2 = new System.Data.SqlClient.SqlCommand();
+            this.button3 = new System.Windows.Forms.Button();
+            this.sqlCommand3 = new System.Data.SqlClient.SqlCommand();
             this.SuspendLayout();
             // 
             // sqlConnection1
@@ -80,11 +82,26 @@ namespace DBCommand
             // 
             this.sqlCommand2.Connection = this.sqlConnection1;
             // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(68, 304);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(153, 56);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Создание таблицы";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // sqlCommand3
+            // 
+            this.sqlCommand3.Connection = this.sqlConnection1;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button1);
@@ -102,6 +119,8 @@ namespace DBCommand
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button button2;
         private System.Data.SqlClient.SqlCommand sqlCommand2;
+        private System.Windows.Forms.Button button3;
+        private System.Data.SqlClient.SqlCommand sqlCommand3;
     }
 }
 

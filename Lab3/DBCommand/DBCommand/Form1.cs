@@ -76,5 +76,33 @@ namespace DBCommand
             }
             richTextBox1.Text = sb.ToString();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                sqlCommand3.CommandType = CommandType.Text;
+
+                using (sqlCommand3.Connection)
+                {
+                    sqlCommand3.Connection.Open();
+                    sqlCommand3.CommandText = "CREATE TABLE SalesPersons (" +
+                                              "[SalesPersonID] [int] IDENTITY(1,1) NOT NULL, " +
+                                              "[FirstName] [nvarchar](50)  NULL, " +
+                                              "[LastName] [nvarchar](50)  NULL)";
+
+                    sqlCommand3.ExecuteNonQuery();
+                }
+                MessageBox.Show("Таблица SalesPersons создана");
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
