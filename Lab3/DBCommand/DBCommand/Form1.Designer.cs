@@ -41,7 +41,13 @@ namespace DBCommand
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
             this.sqlCommand4 = new System.Data.SqlClient.SqlCommand();
+            this.button5 = new System.Windows.Forms.Button();
+            this.CategoryNameTextBox = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.OrdYearTextBox = new System.Windows.Forms.TextBox();
+            this.sqlCommand5 = new System.Data.SqlClient.SqlCommand();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // sqlConnection1
@@ -113,7 +119,7 @@ namespace DBCommand
             // 
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.CityTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(293, 260);
+            this.groupBox1.Location = new System.Drawing.Point(293, 200);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(390, 100);
             this.groupBox1.TabIndex = 5;
@@ -137,11 +143,60 @@ namespace DBCommand
             this.sqlCommand4.Parameters.AddRange(new System.Data.SqlClient.SqlParameter[] {
             new System.Data.SqlClient.SqlParameter("@City", System.Data.SqlDbType.NVarChar, 15, "City")});
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(19, 35);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(153, 56);
+            this.button5.TabIndex = 6;
+            this.button5.Text = "Процедура с параметром";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // CategoryNameTextBox
+            // 
+            this.CategoryNameTextBox.Location = new System.Drawing.Point(263, 26);
+            this.CategoryNameTextBox.Name = "CategoryNameTextBox";
+            this.CategoryNameTextBox.Size = new System.Drawing.Size(100, 22);
+            this.CategoryNameTextBox.TabIndex = 7;
+            this.CategoryNameTextBox.Text = "Beverages";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.OrdYearTextBox);
+            this.groupBox2.Controls.Add(this.button5);
+            this.groupBox2.Controls.Add(this.CategoryNameTextBox);
+            this.groupBox2.Location = new System.Drawing.Point(293, 325);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(390, 130);
+            this.groupBox2.TabIndex = 8;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "groupBox2";
+            // 
+            // OrdYearTextBox
+            // 
+            this.OrdYearTextBox.Location = new System.Drawing.Point(263, 78);
+            this.OrdYearTextBox.Name = "OrdYearTextBox";
+            this.OrdYearTextBox.Size = new System.Drawing.Size(100, 22);
+            this.OrdYearTextBox.TabIndex = 8;
+            this.OrdYearTextBox.Text = "1997";
+            // 
+            // sqlCommand5
+            // 
+            this.sqlCommand5.CommandText = "SalesByCategory";
+            this.sqlCommand5.CommandType = System.Data.CommandType.StoredProcedure;
+            this.sqlCommand5.Connection = this.sqlConnection1;
+            this.sqlCommand5.Parameters.AddRange(new System.Data.SqlClient.SqlParameter[] {
+            new System.Data.SqlClient.SqlParameter("@RETURN_VALUE", System.Data.SqlDbType.Int, 4, System.Data.ParameterDirection.ReturnValue, false, ((byte)(0)), ((byte)(0)), "", System.Data.DataRowVersion.Current, null),
+            new System.Data.SqlClient.SqlParameter("@CategoryName", System.Data.SqlDbType.NVarChar, 15),
+            new System.Data.SqlClient.SqlParameter("@OrdYear", System.Data.SqlDbType.NVarChar, 4)});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 479);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
@@ -151,6 +206,8 @@ namespace DBCommand
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -169,6 +226,11 @@ namespace DBCommand
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button button4;
         private System.Data.SqlClient.SqlCommand sqlCommand4;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox CategoryNameTextBox;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox OrdYearTextBox;
+        private System.Data.SqlClient.SqlCommand sqlCommand5;
     }
 }
 

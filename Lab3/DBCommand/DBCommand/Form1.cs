@@ -149,5 +149,51 @@ namespace DBCommand
                 sqlConnection1.ConnectionString = @"Data Source=LAPTOP-35VMNLA7\SQLEXPRESS02;Initial Catalog=Northwind;Integrated Security=True";
             }
         }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                sqlCommand5.Parameters["@CategoryName"].Value = CategoryNameTextBox.Text;
+                sqlCommand5.Parameters["@OrdYear"].Value = OrdYearTextBox.Text;
+
+                using (sqlCommand5.Connection)
+                {
+                    sqlCommand5.Connection.Open();
+
+                    using (SqlDataReader reader = sqlCommand5.ExecuteReader())
+                    {
+                        bool MoreResults = false;
+                        do
+                        {
+                            while (reader.Read())
+                            {
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    sb.Append(reader[i].ToString() + "\t");
+                                }
+                                sb.Append(Environment.NewLine);
+                            }
+                            MoreResults = reader.NextResult();
+                        }
+                        while (MoreResults);
+                    }
+                }
+                richTextBox1.Text = sb.ToString();
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                if (sqlCommand5.Connection.State == ConnectionState.Open)
+                {
+                    sqlCommand5.Connection.Close();
+                }
+                sqlConnection1.ConnectionString = @"Data Source=LAPTOP-35VMNLA7\SQLEXPRESS02;Initial Catalog=Northwind;Integrated Security=True";
+            }
+        }
     }
 }
