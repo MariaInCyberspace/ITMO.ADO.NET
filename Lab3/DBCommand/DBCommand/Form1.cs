@@ -140,6 +140,14 @@ namespace DBCommand
             {
                 MessageBox.Show(ex.Message);
             }
+            finally
+            {
+                if (sqlCommand4.Connection.State == ConnectionState.Open)
+                {
+                    sqlCommand4.Connection.Close();
+                }
+                sqlConnection1.ConnectionString = @"Data Source=LAPTOP-35VMNLA7\SQLEXPRESS02;Initial Catalog=Northwind;Integrated Security=True";
+            }
         }
     }
 }
