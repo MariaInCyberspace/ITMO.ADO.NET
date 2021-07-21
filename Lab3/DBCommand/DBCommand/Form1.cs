@@ -104,5 +104,42 @@ namespace DBCommand
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                StringBuilder sb = new StringBuilder();
+                sqlCommand4.CommandType = CommandType.Text;
+                sqlCommand4.Parameters["@City"].Value = CityTextBox.Text;
+                using (sqlCommand4.Connection)
+                {
+                    sqlCommand4.Connection.Open();
+
+                    using (SqlDataReader reader = sqlCommand4.ExecuteReader())
+                    {
+                        bool MoreResults = false;
+                        do
+                        {
+                            while (reader.Read())
+                            {
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    sb.Append(reader[i].ToString() + "\t");
+                                }
+                                sb.Append(Environment.NewLine);
+                            }
+                            MoreResults = reader.NextResult();
+                        }
+                        while (MoreResults);
+                    }
+                }
+                richTextBox1.Text = sb.ToString();
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

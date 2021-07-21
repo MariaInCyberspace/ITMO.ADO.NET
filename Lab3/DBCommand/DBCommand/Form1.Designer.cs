@@ -37,6 +37,11 @@ namespace DBCommand
             this.sqlCommand2 = new System.Data.SqlClient.SqlCommand();
             this.button3 = new System.Windows.Forms.Button();
             this.sqlCommand3 = new System.Data.SqlClient.SqlCommand();
+            this.CityTextBox = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.sqlCommand4 = new System.Data.SqlClient.SqlCommand();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // sqlConnection1
@@ -96,17 +101,56 @@ namespace DBCommand
             // 
             this.sqlCommand3.Connection = this.sqlConnection1;
             // 
+            // CityTextBox
+            // 
+            this.CityTextBox.Location = new System.Drawing.Point(263, 43);
+            this.CityTextBox.Name = "CityTextBox";
+            this.CityTextBox.Size = new System.Drawing.Size(100, 22);
+            this.CityTextBox.TabIndex = 4;
+            this.CityTextBox.Text = "London";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.button4);
+            this.groupBox1.Controls.Add(this.CityTextBox);
+            this.groupBox1.Location = new System.Drawing.Point(293, 260);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(390, 100);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(19, 28);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(149, 52);
+            this.button4.TabIndex = 5;
+            this.button4.Text = "Запрос с параметром";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // sqlCommand4
+            // 
+            this.sqlCommand4.CommandText = "SELECT CustomerID, CompanyName, City\r\nFROM     Customers\r\nWHERE  (City = @City)";
+            this.sqlCommand4.Connection = this.sqlConnection1;
+            this.sqlCommand4.Parameters.AddRange(new System.Data.SqlClient.SqlParameter[] {
+            new System.Data.SqlClient.SqlParameter("@City", System.Data.SqlDbType.NVarChar, 15, "City")});
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -121,6 +165,10 @@ namespace DBCommand
         private System.Data.SqlClient.SqlCommand sqlCommand2;
         private System.Windows.Forms.Button button3;
         private System.Data.SqlClient.SqlCommand sqlCommand3;
+        private System.Windows.Forms.TextBox CityTextBox;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Button button4;
+        private System.Data.SqlClient.SqlCommand sqlCommand4;
     }
 }
 
