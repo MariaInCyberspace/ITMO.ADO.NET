@@ -147,6 +147,9 @@ namespace DataAdapterWizard
                         new System.Data.Common.DataColumnMapping("Phone", "Phone"),
                         new System.Data.Common.DataColumnMapping("Fax", "Fax")})});
             this.sqlDataAdapter1.UpdateCommand = this.sqlUpdateCommand1;
+            this.sqlDataAdapter1.RowUpdated += new System.Data.SqlClient.SqlRowUpdatedEventHandler(this.sqlDataAdapter1_RowUpdated);
+            this.sqlDataAdapter1.RowUpdating += new System.Data.SqlClient.SqlRowUpdatingEventHandler(this.sqlDataAdapter1_RowUpdating);
+            this.sqlDataAdapter1.FillError += new System.Data.FillErrorEventHandler(this.sqlDataAdapter1_FillError);
             // 
             // sqlConnection1
             // 
