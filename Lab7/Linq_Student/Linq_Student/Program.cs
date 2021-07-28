@@ -11,11 +11,18 @@ namespace Linq_Student
         static void Main(string[] args)
         {
             IEnumerable<Student> studentQuery = from student in Student.students
-                                                where student.Scores[2] > 90
+                                                where student.Scores[0] > 90 && student.Scores[3] < 80
+                                                orderby student.Last descending
                                                 select student;
-            foreach (Student student in studentQuery)
+            var studentQuery2 = from student in Student.students
+                                group student by student.Last[0];
+            foreach (var studentGroup in studentQuery2)
             {
-                Console.WriteLine("{0}, {1}", student.Last, student.First);
+                Console.WriteLine(studentGroup.Key);
+                foreach (Student student in studentGroup)
+                {
+                    Console.WriteLine(" {0} {1}", student.Last, student.First);
+                }
             }
             Console.ReadLine();
         }
