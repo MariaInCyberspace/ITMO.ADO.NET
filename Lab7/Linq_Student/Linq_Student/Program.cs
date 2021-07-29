@@ -16,10 +16,12 @@ namespace Linq_Student
                                                 select student;
             var studentQuery2 = from student in Student.students
                                 group student by student.Last[0];
-            foreach (var studentGroup in studentQuery2)
+            var studentQuery3 = from student in Student.students
+                                group student by student.Last[0];
+            foreach (var groupOfStudents in studentQuery3)
             {
-                Console.WriteLine(studentGroup.Key);
-                foreach (Student student in studentGroup)
+                Console.WriteLine(groupOfStudents.Key);
+                foreach (var student in groupOfStudents)
                 {
                     Console.WriteLine(" {0} {1}", student.Last, student.First);
                 }
