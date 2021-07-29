@@ -17,6 +17,7 @@ namespace Linq_Student
         {
             new Student {First="Svetlana", Last="Omelchenko", ID=111, Scores= new List<int> {97, 92, 81, 60}},
             new Student {First="Claire", Last="O’Donnell", ID=112, Scores= new List<int> {75, 84, 91, 39}},
+            new Student {First="Kelly", Last="Segars", ID=113, Scores=new List<int> {90, 85, 91, 74}},
         };
     }
 }

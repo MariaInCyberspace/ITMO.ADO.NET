@@ -10,15 +10,12 @@ namespace Linq_Student
     {
         static void Main(string[] args)
         {
-            IEnumerable<Student> studentQuery = from student in Student.students
-                                                where student.Scores[0] > 90 && student.Scores[3] < 80
-                                                orderby student.Last descending
-                                                select student;
-            var studentQuery2 = from student in Student.students
-                                group student by student.Last[0];
-            var studentQuery3 = from student in Student.students
-                                group student by student.Last[0];
-            foreach (var groupOfStudents in studentQuery3)
+            var studentQuery4 = from student in Student.students
+                                group student by student.Last[0] into studentGroup
+                                orderby studentGroup.Key
+                                select studentGroup;
+
+            foreach (var groupOfStudents in studentQuery4)
             {
                 Console.WriteLine(groupOfStudents.Key);
                 foreach (var student in groupOfStudents)
