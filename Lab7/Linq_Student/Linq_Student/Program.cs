@@ -10,18 +10,13 @@ namespace Linq_Student
     {
         static void Main(string[] args)
         {
-            var studentQuery4 = from student in Student.students
-                                group student by student.Last[0] into studentGroup
-                                orderby studentGroup.Key
-                                select studentGroup;
-
-            foreach (var groupOfStudents in studentQuery4)
+            var studentQuery5 = from student in Student.students
+                                let totalScore = student.Scores[0] + student.Scores[1] + student.Scores[2] + student.Scores[3]
+                                where totalScore / 4 < student.Scores[0]
+                                select student.Last + " " + student.First;
+            foreach (string s in studentQuery5)
             {
-                Console.WriteLine(groupOfStudents.Key);
-                foreach (var student in groupOfStudents)
-                {
-                    Console.WriteLine(" {0} {1}", student.Last, student.First);
-                }
+                Console.WriteLine(s);
             }
             Console.ReadLine();
         }
