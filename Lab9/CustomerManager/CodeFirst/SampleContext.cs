@@ -16,5 +16,13 @@ namespace CodeFirst
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
 
+
+        // Fluent API
+        protected override void OnModelCreating(DbModelBuilder dbModelBuilder)
+        {
+            // Property 'LastName' of Customer Entity will be configured to have maximum length upon model creation
+            dbModelBuilder.Entity<Customer>().Property(c => c.LastName).HasMaxLength(30);
+        }
+
     }
 }

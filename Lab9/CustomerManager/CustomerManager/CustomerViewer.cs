@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -14,7 +15,7 @@ namespace CustomerManager
 {
     public partial class CustomerViewer : Form
     {
-        SampleContext context = new SampleContext();
+        SampleContext context;
         byte[] Ph;
 
         public List<Order> Orders { get; private set; }
@@ -22,6 +23,8 @@ namespace CustomerManager
         public CustomerViewer()
         {
             InitializeComponent();
+            context = new SampleContext();
+            // Database.SetInitializer(new DropCreateDatabaseIfModelChanges<SampleContext>());
         }
 
         private void Output()
@@ -38,10 +41,11 @@ namespace CustomerManager
             {
                 Customer customer = new Customer
                 {
-                    Name = this.textBoxName.Text,
+                    FirstName = this.textBoxName.Text,
                     LastName = this.textBoxLastName.Text,
                     Email = this.textBoxMail.Text,
                     Age = Int32.Parse(this.textBoxAge.Text),
+                    Orders = orderListBox.SelectedItems.OfType<Order>().ToList(),
                     Photo = Ph
                 };
                 context.Customers.Add(customer);
@@ -75,7 +79,7 @@ namespace CustomerManager
         {
             Output();
             var query = from b in context.Customers
-                        orderby b.Name
+                        orderby b.FirstName
                         select b;
             customerList.DataSource = query.ToList();
         }
@@ -86,6 +90,49 @@ namespace CustomerManager
             context.Orders.Add(new Order { ProductName = "Видео", Quantity = 22, PurchaseDate = DateTime.Parse("10.01.2016") });
             context.SaveChanges();
             orderListBox.DataSource = context.Orders.ToList();
+        }
+
+        private void GridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (GridView.CurrentRow == null) return;
+            var customer = GridView.CurrentRow.DataBoundItem as Customer;
+            if (customer == null) return;
+            labelId.Text = Convert.ToString(customer.CustomerId);
+            textBoxCustomer.Text = customer.ToString();
+
+            textBoxName.Text = customer.FirstName;
+            textBoxLastName.Text = customer.LastName;
+            textBoxMail.Text = customer.Email;
+            textBoxAge.Text = Convert.ToString(customer.Age);
+        }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            if (labelId.Text == String.Empty) return;
+            var id = Convert.ToInt32(labelId.Text);
+            var customer = context.Customers.Find(id);
+            if (customer == null) return;
+
+            customer.FirstName = this.textBoxName.Text;
+            customer.LastName = this.textBoxLastName.Text;
+            customer.Email = this.textBoxMail.Text;
+            customer.Age = Int32.Parse(this.textBoxAge.Text);
+            context.Entry(customer).State = EntityState.Modified;
+
+            context.SaveChanges();
+            Output();
+        }
+
+        private void buttonDel_Click(object sender, EventArgs e)
+        {
+            if (labelId.Text == String.Empty) return;
+
+            var id = Convert.ToInt32(labelId.Text);
+            var customer = context.Customers.Find(id);
+
+            context.Entry(customer).State = EntityState.Deleted;
+            context.SaveChanges();
+            Output();
         }
     }
 }

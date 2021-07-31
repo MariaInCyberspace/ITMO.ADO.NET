@@ -46,8 +46,8 @@ namespace CustomerManager
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.customerRadioButton = new System.Windows.Forms.RadioButton();
             this.orderRadioButton = new System.Windows.Forms.RadioButton();
+            this.customerRadioButton = new System.Windows.Forms.RadioButton();
             this.labelId = new System.Windows.Forms.Label();
             this.textBoxCustomer = new System.Windows.Forms.TextBox();
             this.GridView = new System.Windows.Forms.DataGridView();
@@ -184,6 +184,7 @@ namespace CustomerManager
             this.buttonEdit.TabIndex = 14;
             this.buttonEdit.Text = "Редактировать";
             this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonDel
             // 
@@ -193,6 +194,7 @@ namespace CustomerManager
             this.buttonDel.TabIndex = 15;
             this.buttonDel.Text = "Удалить";
             this.buttonDel.UseVisualStyleBackColor = true;
+            this.buttonDel.Click += new System.EventHandler(this.buttonDel_Click);
             // 
             // groupBox1
             // 
@@ -205,17 +207,6 @@ namespace CustomerManager
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Выбор данных";
             // 
-            // customerRadioButton
-            // 
-            this.customerRadioButton.AutoSize = true;
-            this.customerRadioButton.Location = new System.Drawing.Point(16, 32);
-            this.customerRadioButton.Name = "customerRadioButton";
-            this.customerRadioButton.Size = new System.Drawing.Size(96, 21);
-            this.customerRadioButton.TabIndex = 17;
-            this.customerRadioButton.TabStop = true;
-            this.customerRadioButton.Text = "Customers";
-            this.customerRadioButton.UseVisualStyleBackColor = true;
-            // 
             // orderRadioButton
             // 
             this.orderRadioButton.AutoSize = true;
@@ -226,6 +217,17 @@ namespace CustomerManager
             this.orderRadioButton.TabStop = true;
             this.orderRadioButton.Text = "Orders";
             this.orderRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // customerRadioButton
+            // 
+            this.customerRadioButton.AutoSize = true;
+            this.customerRadioButton.Location = new System.Drawing.Point(16, 32);
+            this.customerRadioButton.Name = "customerRadioButton";
+            this.customerRadioButton.Size = new System.Drawing.Size(96, 21);
+            this.customerRadioButton.TabIndex = 17;
+            this.customerRadioButton.TabStop = true;
+            this.customerRadioButton.Text = "Customers";
+            this.customerRadioButton.UseVisualStyleBackColor = true;
             // 
             // labelId
             // 
@@ -253,6 +255,7 @@ namespace CustomerManager
             this.GridView.RowTemplate.Height = 24;
             this.GridView.Size = new System.Drawing.Size(800, 293);
             this.GridView.TabIndex = 19;
+            this.GridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellClick);
             // 
             // CustomerViewer
             // 
