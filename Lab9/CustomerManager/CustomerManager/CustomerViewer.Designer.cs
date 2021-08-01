@@ -51,6 +51,7 @@ namespace CustomerManager
             this.labelId = new System.Windows.Forms.Label();
             this.textBoxCustomer = new System.Windows.Forms.TextBox();
             this.GridView = new System.Windows.Forms.DataGridView();
+            this.vipOrdersRadioButton = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.SuspendLayout();
@@ -198,6 +199,7 @@ namespace CustomerManager
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.vipOrdersRadioButton);
             this.groupBox1.Controls.Add(this.orderRadioButton);
             this.groupBox1.Controls.Add(this.customerRadioButton);
             this.groupBox1.Location = new System.Drawing.Point(432, 90);
@@ -210,7 +212,7 @@ namespace CustomerManager
             // orderRadioButton
             // 
             this.orderRadioButton.AutoSize = true;
-            this.orderRadioButton.Location = new System.Drawing.Point(236, 32);
+            this.orderRadioButton.Location = new System.Drawing.Point(142, 32);
             this.orderRadioButton.Name = "orderRadioButton";
             this.orderRadioButton.Size = new System.Drawing.Size(73, 21);
             this.orderRadioButton.TabIndex = 18;
@@ -256,6 +258,17 @@ namespace CustomerManager
             this.GridView.Size = new System.Drawing.Size(800, 293);
             this.GridView.TabIndex = 19;
             this.GridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GridView_CellClick);
+            // 
+            // vipOrdersRadioButton
+            // 
+            this.vipOrdersRadioButton.AutoSize = true;
+            this.vipOrdersRadioButton.Location = new System.Drawing.Point(236, 33);
+            this.vipOrdersRadioButton.Name = "vipOrdersRadioButton";
+            this.vipOrdersRadioButton.Size = new System.Drawing.Size(98, 21);
+            this.vipOrdersRadioButton.TabIndex = 20;
+            this.vipOrdersRadioButton.TabStop = true;
+            this.vipOrdersRadioButton.Text = "VIP Orders";
+            this.vipOrdersRadioButton.UseVisualStyleBackColor = true;
             // 
             // CustomerViewer
             // 
@@ -317,6 +330,7 @@ namespace CustomerManager
         private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.TextBox textBoxCustomer;
         private System.Windows.Forms.DataGridView GridView;
+        private System.Windows.Forms.RadioButton vipOrdersRadioButton;
     }
 }
 
