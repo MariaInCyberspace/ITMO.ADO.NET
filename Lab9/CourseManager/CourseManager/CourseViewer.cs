@@ -28,11 +28,6 @@ namespace CourseManager
             // Populate the context
             schoolContext.Departments.Load();
 
-            // Find the departments 
-            var departmentQuery = from d in schoolContext.Departments.Include("Courses")
-                                  orderby d.Name
-                                  select d;
-
             try
             {
                 this.departmentList.DisplayMember = "Name";
