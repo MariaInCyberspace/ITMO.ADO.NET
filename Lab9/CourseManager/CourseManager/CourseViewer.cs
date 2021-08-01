@@ -27,7 +27,6 @@ namespace CourseManager
             schoolContext = new SchoolEntities();
             // Populate the context
             schoolContext.Departments.Load();
-            schoolContext.Courses.Load();
 
             // Find the departments 
             var departmentQuery = from d in schoolContext.Departments.Include("Courses")
@@ -37,6 +36,7 @@ namespace CourseManager
             try
             {
                 this.departmentList.DisplayMember = "Name";
+
                 // Define the data source for department list based on observable collection of data in the context
                 this.departmentList.DataSource = schoolContext.Departments.Local;
             }
